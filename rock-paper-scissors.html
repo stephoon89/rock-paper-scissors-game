@@ -1,0 +1,108 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+<title>Rock Paper Scissors</title>
+
+</head>
+<body>
+    <script>  
+
+// Rock paper scissors array
+let rpsArray = ["Rock", "Paper", "Scissors"];
+
+// Computer picks randomly from array. Math.floor to round down. Math.random for random # btw 0-1
+function computerPlay() {
+    return rpsArray [Math.floor(Math.random() * rpsArray.length)]; 
+}
+
+// 1 Round btw player & computer
+function playRound(playerSelection, computerSelection) {
+
+    let computerPick = computerSelection.toLowerCase();
+    let playerPick = playerSelection.toLowerCase();
+    
+    if (playerPick !== "rock" && playerPick !== "paper" && playerPick !== "scissors") {
+        alert("YOU SHOULD ONLY USE ROCK PAPER OR SCISSORS, GENIUS");
+    }
+
+// If player selection is "rock"
+    if (playerPick === "rock")  {
+        if (computerPick === "paper") {
+            computerScore++;
+            return `Computer chose paper. You LOSE this round. The score is ${playerScore} to ${computerScore}`
+        }
+        else if (computerPick === "scissors") {
+            playerScore++;
+            return `Computer chose scissors. You WIN this round. The score is ${playerScore} to ${computerScore}`
+        }
+        else {
+            return `That's a DRAW. Computer rock too. The score is ${playerScore} to ${computerScore}`
+        }
+    }
+
+// If player selection is "paper"
+    if (playerPick === "paper") {
+        if (computerPick === "rock") {
+            playerScore++;
+            return `Computer chose rock. You WIN this round. The score is ${playerScore} to ${computerScore}`
+        }
+        else if (computerPick === "scissors") {
+            computerScore++;
+            return `Computer chose scissors. You LOSE this round. The score is ${playerScore} to ${computerScore}`
+        }
+        else { 
+            return `That's a DRAW. Computer chose paper too. The score is ${playerScore} to ${computerScore}`
+        }
+    }
+
+// If player selection is "scissors"    
+    if (playerPick === "scissors") {
+        if (computerPick === "paper") {
+            playerScore++;
+            return `Computer chose paper. You WIN this round. The score is ${playerScore} to ${computerScore}`
+        }
+        else if (computerPick === "rock") {
+            computerScore++;
+            return `Computer chose rock. You LOSE this round. The score is ${playerScore} to ${computerScore}`
+        }
+        else {
+            return `That's a DRAW. Computer chose scissors too. The score is ${playerScore} to ${computerScore}`
+        }
+    }
+}
+
+// Scoreboard
+let computerScore = 0
+let playerScore = 0
+
+// Round counter
+let roundCount = 1
+
+// Best of 5 match --> First to 3 wins
+function  game () {
+
+    for (var i = 0;; i++) {
+    
+    let playerSelection = prompt(`Round ${roundCount}. Pick your weapon: Rock, Paper, Scissors. First to three wins`);
+    let computerSelection = computerPlay();
+    roundCount++
+
+    console.log(playRound(playerSelection, computerSelection));
+
+        if (computerScore >= 3) {
+        return alert(`Looks like you lost. The computer already has a score of ${computerScore}`);
+        }
+
+        else if (playerScore >= 3) {
+        return alert(`Congratulations! Your score is ${playerScore}. You win`);
+        }
+    }
+}
+
+game();
+
+
+    </script>
+</body>
+</html>
